@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASTRO &amp; MAX — Odisea Estelar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="arcade-shell">
+    <header class="hud-bar" aria-label="Información del juego">
+      <div class="hud-item">
+        <span class="hud-label">ASTRO</span>
+        <span class="hud-value" id="hud-score">000000</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">★ ESTRELLAS</span>
+        <span class="hud-value" id="hud-stars">00</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">PLANETA</span>
+        <span class="hud-value" id="hud-planet">1-1 LUNA</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">VIDAS</span>
+        <span class="hud-value" id="hud-lives">♥♥♥</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">ARMA</span>
+        <span class="hud-value" id="hud-weapon">LÁSER</span>
+      </div>
+      <div class="hud-actions">
+        <button id="btn-mute" class="pixel-btn small" title="Activar/Desactivar sonido (M)">🔊</button>
+        <button id="btn-crt" class="pixel-btn small" title="Efecto CRT">📺</button>
+      </div>
+    </header>
+
+    <main class="screen-frame">
+      <canvas id="game-canvas" width="480" height="270"></canvas>
+      <div id="crt-overlay" class="crt-overlay active"></div>
+
+      <!-- Pantalla de Título -->
+      <section id="overlay-title" class="overlay visible">
+        <div class="title-badge">EDICIÓN RETRO 8-BIT</div>
+        <h1 class="game-title">ASTRO &amp; MAX</h1>
+        <p class="game-subtitle">ODISEA ESTELAR</p>
+        <p class="story-blurb">
+          Recorre 3 planetas junto a tu fiel schnauzer espacial <strong>Max</strong>,
+          recolecta estrellas y destruye cometas y meteoros con tu pistola láser.
+        </p>
+
+        <div class="controls-grid">
+          <div class="control-card">
+            <span class="key-cap">← →</span>
+            <span>Moverse</span>
+          </div>
+          <div class="control-card">
+            <span class="key-cap">↑</span>
+            <span>Saltar</span>
+          </div>
+          <div class="control-card">
+            <span class="key-cap">↓</span>
+            <span>Agacharse</span>
+          </div>
+          <div class="control-card">
+            <span class="key-cap">CLIC IZQ</span>
+            <span>Disparar láser</span>
+          </div>
+        </div>
+
+        <button id="btn-start" class="pixel-btn primary">¡DESPEGAR!</button>
+      </section>
+
+      <!-- Pantalla de Transición de Planeta / Victoria -->
+      <section id="overlay-stage" class="overlay">
+        <h2 id="stage-title">¡PLANETA COMPLETADO!</h2>
+        <p id="stage-subtitle">Max está listo para el siguiente salto espacial.</p>
+        <div class="stage-stats" id="stage-stats"></div>
+        <button id="btn-next-stage" class="pixel-btn primary">SIGUIENTE PLANETA</button>
+      </section>
+
+      <!-- Pantalla de Game Over -->
+      <section id="overlay-gameover" class="overlay">
+        <h2 class="danger-text">MISIÓN FALLIDA</h2>
+        <p id="gameover-reason">Los meteoros detuvieron la expedición.</p>
+        <div class="stage-stats" id="gameover-stats"></div>
+        <button id="btn-retry" class="pixel-btn primary">REINTENTAR</button>
+      </section>
+    </main>
+
+    <footer class="footer-bar">
+      <span>CONTROLES: FLECHAS DIRECCIONALES = MOVER / SALTAR · CLIC IZQUIERDO = PISTOLA ESPACIAL · P = PAUSA</span>
+    </footer>
+  </div>
+
+  <script src="audio.js"></script>
+  <script src="sprites.js"></script>
+  <script src="levels.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
